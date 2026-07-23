@@ -71,6 +71,21 @@
   .btn-sm .label{ padding:9px 4px 9px 16px; font-size:13px; }
   .btn-sm .icon-circle{ width:30px; height:30px; }
   .btn-sm .icon-circle svg{ width:12px; height:12px; }
+  .btn-lg .label{ padding:15px 10px 15px 28px; font-size:16px; }
+  .btn-lg .icon-circle{ width:44px; height:44px; }
+  .btn-lg .icon-circle svg{ width:16px; height:16px; }
+  .btn-navy{ background:var(--navy); }
+  .btn-navy .label{ color:#fff; }
+  .btn-navy .icon-circle{ background:#fff; }
+  .btn-navy .icon-circle svg{ stroke:var(--navy); }
+  .btn-navy:hover{ background:#0f3f57; }
+  .btn-light{ background:var(--cream-on-dark); }
+  .btn-light .label{ color:var(--dark); }
+  .btn-light .icon-circle{ background:var(--dark); }
+  .btn-light .icon-circle svg{ stroke:var(--cream-on-dark); }
+  .btn-light:hover{ background:#fff; }
+  .btn-block{ display:flex; width:100%; justify-content:space-between; }
+  .btn-block .icon-circle{ margin-right:5px; }
 
   /* topbar: glass */
   .topbar{ position:sticky; top:16px; z-index:60; margin:16px auto 0; max-width:var(--maxw); padding:0 28px; }
