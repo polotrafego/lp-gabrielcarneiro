@@ -21,3 +21,27 @@ function scrollCarousel(trackId, dir){
       if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
     });
   });
+
+  function openLightbox(src, alt){
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    if(!lb || !img) return;
+    img.src = src;
+    img.alt = alt || '';
+    lb.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    const lb = document.getElementById('lightbox');
+    if(!lb) return;
+    lb.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('#palcoTrack .photo-card img').forEach(img=>{
+    img.addEventListener('click', ()=> openLightbox(img.src, img.alt));
+  });
+  const lightboxEl = document.getElementById('lightbox');
+  if(lightboxEl){
+    lightboxEl.addEventListener('click', (e)=>{ if(e.target === lightboxEl || e.target.classList.contains('lightbox-close')) closeLightbox(); });
+  }
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
