@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:claude.ai)",
+      "Bash(awk '{ print length, NR }' \"lp-gabriel-carneiro-mockup-alt.html\")",
+      "Bash(mkdir -p \"/c/Users/Polo/AppData/Local/Temp/claude/C--Users-Polo-OneDrive--rea-de-Trabalho-LP---Gabriel-Carneiro/36632f53-423b-428e-ad8d-f57d654ca16d/scratchpad\")",
+      "Bash(cp /tmp/mockup_readable.txt \"/c/Users/Polo/AppData/Local/Temp/claude/C--Users-Polo-OneDrive--rea-de-Trabalho-LP---Gabriel-Carneiro/36632f53-423b-428e-ad8d-f57d654ca16d/scratchpad/mockup_readable.txt\")",
+      "Read(//c/Users/Polo/AppData/Local/Temp/claude/C--Users-Polo-OneDrive--rea-de-Trabalho-LP---Gabriel-Carneiro/36632f53-423b-428e-ad8d-f57d654ca16d/scratchpad/**)",
+      "Bash(awk '{ if \\(length\\($0\\) > 2000\\) print NR\": [LINE TRUNCATED, length=\"length\\($0\\)\"] \"substr\\($0,1,150\\)\"...\"; else print NR\"\\\\t\"$0 }' \"lp-gabriel-carneiro.html\" > \"/c/Users/Polo/AppData/Local/Temp/claude/C--Users-Polo-OneDrive--rea-de-Trabalho-LP---Gabriel-Carneiro/36632f53-423b-428e-ad8d-f57d654ca16d/scratchpad/final_readable.txt\" *)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(python3 -)",
+      "Bash(cp /tmp/imgcheck/line_281.jpg /c/Users/Polo/AppData/Local/Temp/claude/C--Users-Polo-OneDrive--rea-de-Trabalho-LP---Gabriel-Carneiro/36632f53-423b-428e-ad8d-f57d654ca16d/scratchpad/line_281.jpg)",
+      "Bash(cp /tmp/imgcheck/line_362.jpg /c/Users/Polo/AppData/Local/Temp/claude/C--Users-Polo-OneDrive--rea-de-Trabalho-LP---Gabriel-Carneiro/36632f53-423b-428e-ad8d-f57d654ca16d/scratchpad/line_362.jpg)",
+      "Bash(node -e \"console.log\\(process.version\\)\")",
+      "Bash(base64 -w0 \"Fotos - Gabriel Carneiro/foto-hero.jpg\")",
+      "Bash(base64 -w0 \"Fotos - Gabriel Carneiro/o-profissional.jpg\")",
+      "Bash(base64 -w0 \"Fotos - Gabriel Carneiro/foto-cta.jpg\")",
+      "Read(//tmp/**)",
+      "Bash(cp \"lp-gabriel-carneiro.html\" \"/tmp/lp-gabriel-carneiro.backup.html\")",
+      "Bash(perl \"/c/Users/Polo/AppData/Local/Temp/claude/C--Users-Polo-OneDrive--rea-de-Trabalho-LP---Gabriel-Carneiro/36632f53-423b-428e-ad8d-f57d654ca16d/scratchpad/replace_images.pl\" \"lp-gabriel-carneiro.html\")",
+      "Bash(rm -f /tmp/verify_*.jpg /tmp/imgcheck/line_*.jpg /tmp/line_281.jpg /tmp/line_362.jpg 2>/dev/null; echo done)",
+      "Bash(awk '{print $5, $NF}')"
+    ]
+  }
+}
