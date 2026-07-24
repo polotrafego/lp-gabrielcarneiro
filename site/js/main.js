@@ -45,3 +45,27 @@ function scrollCarousel(trackId, dir){
     lightboxEl.addEventListener('click', (e)=>{ if(e.target === lightboxEl || e.target.classList.contains('lightbox-close')) closeLightbox(); });
   }
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+  // Parallax suave nos elementos [data-parallax] (respeita prefers-reduced-motion)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+  if(parallaxEls.length && !prefersReduced){
+    let ticking = false;
+    const update = ()=>{
+      const vh = window.innerHeight;
+      parallaxEls.forEach(el=>{
+        const host = el.closest('section') || el.parentElement;
+        const rect = host.getBoundingClientRect();
+        if(rect.bottom < -200 || rect.top > vh + 200) return;
+        // progresso -1..1 conforme a seção cruza a viewport
+        const progress = (rect.top + rect.height/2 - vh/2) / (vh/2 + rect.height/2);
+        const shift = Math.max(-70, Math.min(70, -progress * 70));
+        el.style.transform = 'translate(0, calc(-50% + ' + shift.toFixed(1) + 'px))';
+      });
+      ticking = false;
+    };
+    const onScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll, { passive:true });
+    update();
+  }
