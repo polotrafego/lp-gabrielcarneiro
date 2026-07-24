@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Marca — Gabriel Carneiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --paper-alt:#F5F3EE;
+    --dark:#12171D;
+    --dark-2:#1B222B;
+    --text-dark:#161A1F;
+    --text-soft:#5B564D;
+    --text-on-dark:#C7CDD2;
+    --cream-on-dark:#F1EDE4;
+    --amber:#C1702E;
+    --amber-deep:#9C5620;
+    --sand:#E9D985;
+    --navy:#175676;
+    --sky:#4BA3C3;
+    --ice:#CCE6F4;
+    --line:#E7E2D8;
+    --line-dark:rgba(241,237,228,0.13);
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --maxw:1080px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--paper); color:var(--text-dark); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; line-height:1.6; }
+  h1,h2,h3,h4,.display{ font-family:'Archivo',sans-serif; font-weight:800; letter-spacing:-0.02em; margin:0; color:var(--text-dark); }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  img,svg{ display:block; max-width:100%; }
+  .accent{ color:var(--amber); }
+
+  /* layout */
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+  section{ padding:84px 0; border-top:1px solid var(--line); }
+  .sec-num{ font-family:'Archivo',sans-serif; font-weight:800; font-size:13px; letter-spacing:.14em; color:var(--amber); text-transform:uppercase; }
+  .sec-title{ font-size:clamp(26px,3.4vw,40px); line-height:1.1; margin:12px 0 14px; max-width:760px; }
+  .sec-intro{ font-size:16.5px; color:var(--text-soft); max-width:640px; margin-bottom:44px; }
+
+  /* eyebrow / badge (componente da marca) */
+  .badge{ display:inline-flex; align-items:center; gap:9px; padding:9px 18px; border-radius:999px; font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .badge .dot{ width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; }
+  .badge-light{ background:var(--paper-alt); border:1px solid var(--line); color:var(--text-dark); }
+  .badge-dark{ background:rgba(241,237,228,0.06); border:1px solid var(--line-dark); color:var(--cream-on-dark); }
+
+  /* topbar de navegação do guia */
+  .guide-nav{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.86); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+  .guide-nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:62px; gap:20px; }
+  .guide-nav .brand{ font-family:'Archivo',sans-serif; font-weight:800; font-size:14px; letter-spacing:.06em; text-transform:uppercase; }
+  .guide-nav nav{ display:flex; gap:4px; flex-wrap:wrap; }
+  .guide-nav nav a{ font-size:12px; font-weight:600; color:var(--text-soft); padding:8px 12px; border-radius:999px; transition:background .2s, color .2s; }
+  .guide-nav nav a:hover{ background:var(--paper-alt); color:var(--text-dark); }
+  @media (max-width:860px){ .guide-nav nav{ display:none; } }
+
+  /* capa */
+  .cover{ background:var(--dark); color:var(--cream-on-dark); border:none; padding:0; position:relative; overflow:hidden; }
+  .cover .inner{ max-width:var(--maxw); margin:0 auto; padding:96px 32px 104px; position:relative; z-index:2; }
+  .cover-mountain{ position:absolute; right:0; bottom:0; width:min(620px,58%); opacity:.9; z-index:1; pointer-events:none; }
+  .cover .badge-dark{ margin-bottom:26px; }
+  .cover h1{ color:var(--cream-on-dark); font-size:clamp(38px,6vw,74px); line-height:1.02; font-weight:900; max-width:720px; }
+  .cover h1 .accent{ color:var(--amber); }
+  .cover .lead{ font-size:18px; color:var(--text-on-dark); max-width:520px; margin-top:24px; line-height:1.6; }
+  .cover .meta{ margin-top:44px; display:flex; gap:40px; flex-wrap:wrap; font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--text-on-dark); }
+  .cover .meta b{ display:block; font-family:'Archivo',sans-serif; color:var(--sand); font-size:13px; margin-bottom:3px; }
+
+  /* grids util */
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media (max-width:820px){ .grid-2,.grid-3{ grid-template-columns:1fr; } }
+
+  .card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-md); padding:28px; }
+  .card h4{ font-size:18px; margin-bottom:8px; }
+  .card p{ font-size:14.5px; color:var(--text-soft); }
+  .card .ico{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .card .ico svg{ width:20px; height:20px; }
+
+  /* essência: painel escuro com manifesto */
+  .manifesto-card{ background:var(--dark); border-radius:var(--radius-lg); padding:56px; color:var(--cream-on-dark); position:relative; overflow:hidden; }
+  .manifesto-card .q{ font-family:'Archivo',sans-serif; font-weight:800; font-size:clamp(22px,2.8vw,34px); line-height:1.3; max-width:720px; position:relative; z-index:2; }
+  .manifesto-card .by{ margin-top:22px; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--sand); position:relative; z-index:2; }
+  .manifesto-card .m-bg{ position:absolute; right:-30px; bottom:-30px; width:380px; opacity:.16; z-index:1; }
+
+  /* tom de voz — atributos */
+  .attr{ display:flex; gap:16px; align-items:flex-start; padding:22px 0; border-top:1px solid var(--line); }
+  .attr:first-child{ border-top:none; }
+  .attr .k{ font-family:'Archivo',sans-serif; font-weight:800; color:var(--amber); font-size:15px; width:34px; flex-shrink:0; }
+  .attr h4{ font-size:16.5px; margin-bottom:4px; }
+  .attr p{ font-size:14.5px; color:var(--text-soft); }
+
+  /* do / don't */
+  .dodont{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  @media (max-width:820px){ .dodont{ grid-template-columns:1fr; } }
+  .dd{ border-radius:var(--radius-md); padding:26px 28px; border:1px solid var(--line); }
+  .dd.do{ background:#F3F7F4; border-color:#D9E7DD; }
+  .dd.dont{ background:#FBF3F0; border-color:#EFDAD1; }
+  .dd .lbl{ display:flex; align-items:center; gap:9px; font-family:'Archivo',sans-serif; font-weight:800; font-size:14px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:16px; }
+  .dd.do .lbl{ color:#2E7D4F; }
+  .dd.dont .lbl{ color:#B5502F; }
+  .dd .lbl .chip{ width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; }
+  .dd.do .chip{ background:#2E7D4F; }
+  .dd.dont .chip{ background:#B5502F; }
+  .dd ul{ margin:0; padding:0; list-style:none; }
+  .dd li{ font-size:14px; padding:8px 0; padding-left:20px; position:relative; color:var(--text-dark); }
+  .dd li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; }
+  .dd.do li::before{ background:#2E7D4F; }
+  .dd.dont li::before{ background:#B5502F; }
+
+  /* frases-âncora */
+  .phrase{ background:var(--paper-alt); border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:var(--radius-sm); padding:20px 24px; }
+  .phrase p{ font-family:'Archivo',sans-serif; font-weight:700; font-size:16px; line-height:1.4; color:var(--text-dark); }
+
+  /* regras de escrita */
+  .rule{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); border-radius:var(--radius-md); overflow:hidden; margin-bottom:14px; }
+  @media (max-width:640px){ .rule{ grid-template-columns:1fr; } }
+  .rule .side{ padding:18px 22px; font-size:14px; }
+  .rule .yes{ background:#F3F7F4; }
+  .rule .no{ background:#FBF3F0; border-left:1px solid var(--line); }
+  .rule .tag{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; display:block; margin-bottom:6px; }
+  .rule .yes .tag{ color:#2E7D4F; }
+  .rule .no .tag{ color:#B5502F; }
+  .rule .no s{ color:var(--text-soft); text-decoration-color:#B5502F; }
+
+  /* logo lockup */
+  .logo-panel{ border:1px solid var(--line); border-radius:var(--radius-md); padding:56px; display:flex; align-items:center; justify-content:center; }
+  .logo-panel.dark{ background:var(--dark); }
+  .logo-panel.light{ background:var(--paper-alt); }
+  .wordmark{ font-family:'Archivo',sans-serif; font-weight:800; font-size:30px; letter-spacing:.06em; text-transform:uppercase; }
+  .wordmark.on-dark{ color:var(--cream-on-dark); }
+  .wordmark.on-light{ color:var(--text-dark); }
+
+  /* cores */
+  .swatches{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  @media (max-width:820px){ .swatches{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .swatches{ grid-template-columns:1fr; } }
+  .sw{ border:1px solid var(--line); border-radius:var(--radius-md); overflow:hidden; }
+  .sw .chip{ height:104px; }
+  .sw .info{ padding:14px 16px; }
+  .sw .name{ font-family:'Archivo',sans-serif; font-weight:700; font-size:14px; }
+  .sw .hex{ font-size:12.5px; color:var(--text-soft); margin-top:3px; font-variant-numeric:tabular-nums; }
+  .sw .use{ font-size:12px; color:var(--text-soft); margin-top:8px; line-height:1.5; }
+  .ratio-note{ margin-top:26px; background:var(--paper-alt); border:1px solid var(--line); border-radius:var(--radius-md); padding:22px 26px; font-size:14px; color:var(--text-soft); }
+  .ratio-note b{ color:var(--text-dark); }
+
+  /* tipografia */
+  .type-row{ border-top:1px solid var(--line); padding:26px 0; display:grid; grid-template-columns:120px 1fr; gap:24px; align-items:baseline; }
+  .type-row:first-of-type{ border-top:none; }
+  .type-row .meta{ font-size:12px; color:var(--text-soft); text-transform:uppercase; letter-spacing:.05em; }
+  .type-row .meta b{ display:block; font-family:'Archivo',sans-serif; color:var(--text-dark); font-size:13px; }
+  @media (max-width:640px){ .type-row{ grid-template-columns:1fr; gap:8px; } }
+  .t-display{ font-family:'Archivo',sans-serif; font-weight:900; font-size:44px; letter-spacing:-.02em; line-height:1.05; }
+  .t-h2{ font-family:'Archivo',sans-serif; font-weight:800; font-size:30px; letter-spacing:-.02em; }
+  .t-h3{ font-family:'Archivo',sans-serif; font-weight:700; font-size:20px; }
+  .t-body{ font-family:'Inter',sans-serif; font-weight:400; font-size:16px; color:var(--text-soft); max-width:560px; }
+  .t-eyebrow{ font-family:'Inter',sans-serif; font-weight:700; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); }
+  .font-spec{ display:flex; gap:22px; flex-wrap:wrap; margin-top:8px; }
+  .font-spec .fs{ flex:1; min-width:240px; background:var(--paper-alt); border:1px solid var(--line); border-radius:var(--radius-md); padding:24px; }
+  .font-spec .fs .big{ font-family:'Archivo',sans-serif; font-weight:800; font-size:52px; line-height:1; }
+  .font-spec .fs.inter .big{ font-family:'Inter',sans-serif; font-weight:700; }
+  .font-spec .fs .nm{ margin-top:14px; font-family:'Archivo',sans-serif; font-weight:800; font-size:16px; }
+  .font-spec .fs .ds{ font-size:13px; color:var(--text-soft); margin-top:6px; }
+
+  /* componentes / elementos gráficos */
+  .comp{ background:var(--paper-alt); border:1px solid var(--line); border-radius:var(--radius-md); padding:30px; }
+  .comp .label{ font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--text-soft); margin-bottom:18px; }
+  .btn-demo{ display:inline-flex; align-items:center; gap:10px; border:none; border-radius:999px; padding:5px; background:var(--amber); }
+  .btn-demo .bl{ padding:11px 6px 11px 20px; font-weight:700; font-size:14.5px; color:#fff; }
+  .btn-demo .ic{ width:36px; height:36px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; }
+  .btn-demo .ic svg{ width:14px; height:14px; stroke:var(--amber-deep); }
+  .btn-demo.navy{ background:var(--navy); } .btn-demo.navy .ic svg{ stroke:var(--navy); }
+  .btn-demo.outline{ background:transparent; border:1.5px solid var(--line); }
+  .btn-demo.outline .bl{ color:var(--text-dark); } .btn-demo.outline .ic{ background:var(--paper-alt); border:1px solid var(--line); } .btn-demo.outline .ic svg{ stroke:var(--text-dark); }
+  .tag-demo{ font-size:12px; font-weight:700; letter-spacing:.05em; color:var(--navy); background:transparent; border:1.5px solid var(--navy); border-radius:999px; padding:8px 16px; display:inline-block; }
+  .chip-demo{ font-size:13px; font-weight:600; color:var(--text-dark); background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:9px 16px; display:inline-block; }
+  .demo-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+
+  /* fotografia */
+  .photo-frame{ position:relative; border-radius:var(--radius-md); overflow:hidden; aspect-ratio:4/5; background:var(--dark-2); }
+  .photo-frame .duo{ position:absolute; inset:0; background:linear-gradient(160deg, rgba(18,23,29,0.08), rgba(156,86,32,0.42)); mix-blend-mode:multiply; }
+  .photo-frame .ph-label{ position:absolute; left:16px; bottom:14px; color:var(--cream-on-dark); font-size:12px; letter-spacing:.05em; z-index:2; opacity:.85; }
+  .photo-note{ font-size:14px; color:var(--text-soft); }
+  .photo-note b{ color:var(--text-dark); font-family:'Archivo',sans-serif; }
+
+  /* aplicações mock */
+  .mock{ border:1px solid var(--line); border-radius:var(--radius-md); overflow:hidden; background:var(--paper); }
+  .mock .cap{ font-size:12px; color:var(--text-soft); padding:12px 16px; border-top:1px solid var(--line); text-transform:uppercase; letter-spacing:.05em; }
+  .mock-post{ aspect-ratio:1/1; background:var(--dark); color:var(--cream-on-dark); padding:30px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+  .mock-post .mp-mtn{ position:absolute; right:-20px; bottom:40px; width:210px; opacity:.9; }
+  .mock-post .mp-eyebrow{ font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--sand); position:relative; z-index:2; }
+  .mock-post .mp-title{ font-family:'Archivo',sans-serif; font-weight:900; font-size:30px; line-height:1.08; position:relative; z-index:2; }
+  .mock-post .mp-title .accent{ color:var(--amber); }
+  .mock-post .mp-foot{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-on-dark); position:relative; z-index:2; }
+  .mock-story{ aspect-ratio:9/16; background:linear-gradient(180deg,var(--dark),#0c1014); color:var(--cream-on-dark); padding:30px 26px; display:flex; flex-direction:column; justify-content:flex-end; gap:14px; }
+  .mock-story .badge{ align-self:flex-start; }
+  .mock-story .ms-title{ font-family:'Archivo',sans-serif; font-weight:800; font-size:24px; line-height:1.15; }
+  .mock-print{ aspect-ratio:3/4; background:var(--paper-alt); padding:30px; display:flex; flex-direction:column; justify-content:space-between; border-bottom:1px solid var(--line); }
+  .mock-print .pr-top{ font-family:'Archivo',sans-serif; font-weight:800; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); }
+  .mock-print .pr-title{ font-family:'Archivo',sans-serif; font-weight:900; font-size:26px; line-height:1.1; color:var(--text-dark); }
+  .mock-print .pr-foot{ font-size:11px; color:var(--text-soft); text-transform:uppercase; letter-spacing:.05em; }
+
+  footer.guide-footer{ background:var(--dark); color:var(--text-on-dark); padding:56px 0 40px; border:none; }
+  footer.guide-footer .wrap{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; align-items:flex-end; }
+  footer.guide-footer .fw{ font-family:'Archivo',sans-serif; font-weight:800; color:var(--cream-on-dark); font-size:16px; letter-spacing:.05em; text-transform:uppercase; }
+  footer.guide-footer p{ font-size:13px; margin-top:8px; max-width:420px; line-height:1.6; }
+  footer.guide-footer .fq{ font-family:'Archivo',sans-serif; font-weight:700; color:var(--sand); font-size:15px; max-width:300px; text-align:right; }
+  @media (max-width:640px){ footer.guide-footer .fq{ text-align:left; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="guide-nav">
+  <div class="wrap">
+    <span class="brand">Gabriel Carneiro <span class="accent">·</span> Guia de Marca</span>
+    <nav>
+      <a href="#essencia">Essência</a>
+      <a href="#voz">Tom de voz</a>
+      <a href="#escrita">Escrita</a>
+      <a href="#logo">Logo</a>
+      <a href="#cores">Cores</a>
+      <a href="#tipografia">Tipografia</a>
+      <a href="#elementos">Elementos</a>
+      <a href="#fotografia">Fotografia</a>
+      <a href="#aplicacoes">Aplicações</a>
+    </nav>
+  </div>
+</div>
+
+<!-- CAPA -->
+<section class="cover">
+  <img class="cover-mountain" src="Gabriel-Carneiro-montanha.svg" alt="" aria-hidden="true">
+  <div class="inner">
+    <span class="badge badge-dark"><span class="dot"></span>Guia de marca · v1 · 2026</span>
+    <h1>O topo não tem teto.<br><span class="accent">Nem a nossa marca.</span></h1>
+    <p class="lead">Este guia traduz a identidade de Gabriel Carneiro em regras práticas, para que toda peça, no digital ou no impresso, fale a mesma língua: direta, provocativa e sem motivação vazia.</p>
+    <div class="meta">
+      <div><b>Palestrante</b>Gabriel Carneiro</div>
+      <div><b>Curadoria</b>Polo Palestrantes</div>
+      <div><b>Uso</b>Redes sociais, impressos e apresentações</div>
+    </div>
+  </div>
+</section>
+
+<!-- ESSÊNCIA -->
+<section id="essencia">
+  <div class="wrap">
+    <span class="sec-num">01 — Essência</span>
+    <h2 class="sec-title">Antes da estética, a tese. A marca existe para <span class="accent">provocar decisão</span>.</h2>
+    <p class="sec-intro">Gabriel Carneiro não vende motivação. Ele defende que resultado é consequência de escolhas repetidas, e que isso é treinável. Toda peça deve carregar essa convicção: menos discurso, mais ação.</p>
+
+    <div class="manifesto-card" style="margin-bottom:36px;">
+      <img class="m-bg" src="Gabriel-Carneiro-montanha.svg" alt="" aria-hidden="true">
+      <p class="q">"Não peça para a vida ficar mais fácil. Torne-se mais forte para viver aquilo que vale a pena."</p>
+      <p class="by">Manifesto da marca · Gabriel Carneiro</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="ico" style="background:var(--amber);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5"/></svg></div>
+        <h4>Resultado</h4>
+        <p>É consequência de escolha, não de sorte nem de talento nato. A comunicação foca no que a pessoa pode fazer, não no que ela sente.</p>
+      </div>
+      <div class="card">
+        <div class="ico" style="background:var(--navy);"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cream-on-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <h4>Persistência</h4>
+        <p>É decisão diária, não traço fixo de personalidade. As peças reforçam constância e treino, não picos de euforia.</p>
+      </div>
+      <div class="card">
+        <div class="ico" style="background:var(--amber-deep);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h4>Autoconhecimento</h4>
+        <p>É ferramenta prática para agir melhor, principalmente quando dói. Profundidade com aplicação, nunca autoajuda genérica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOM DE VOZ -->
+<section id="voz">
+  <div class="wrap">
+    <span class="sec-num">02 — Personalidade e tom de voz</span>
+    <h2 class="sec-title">Como a marca fala: firme, mas <span class="accent">nunca agressiva com quem lê</span>.</h2>
+    <p class="sec-intro">A provocação é com a acomodação, não com a pessoa. O tom desafia o leitor a assumir responsabilidade, sempre respeitando a inteligência dele. Direto, adulto, sem clichê de palco.</p>
+
+    <div class="grid-2">
+      <div>
+        <div class="attr"><span class="k">A</span><div><h4>Direto</h4><p>Frases curtas, verbo forte, zero rodeio. Vai ao ponto como quem respeita o tempo de quem escuta.</p></div></div>
+        <div class="attr"><span class="k">B</span><div><h4>Provocativo</h4><p>Confronta a zona de conforto e o discurso pronto. Faz perguntas que incomodam na medida certa.</p></div></div>
+        <div class="attr"><span class="k">C</span><div><h4>Prático</h4><p>Traduz o profundo em ação de segunda-feira. Nunca fica na abstração ou na frase de efeito solta.</p></div></div>
+        <div class="attr"><span class="k">D</span><div><h4>Consultivo</h4><p>Entende o contexto antes de propor. Sem abordagem invasiva, sem pacote engessado, sem pressão de venda.</p></div></div>
+      </div>
+      <div class="dodont">
+        <div class="dd do">
+          <div class="lbl"><span class="chip"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Faça</div>
+          <ul>
+            <li>Fale de escolha, treino e decisão.</li>
+            <li>Use dados reais (NPS +9,6, 150 mil cópias).</li>
+            <li>Provoque a ação: "na segunda-feira".</li>
+            <li>Assuma tom adulto e seguro.</li>
+          </ul>
+        </div>
+        <div class="dd dont">
+          <div class="lbl"><span class="chip"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Evite</div>
+          <ul>
+            <li>Motivação vazia e frase de autoajuda.</li>
+            <li>Promessa mágica ou atalho fácil.</li>
+            <li>Emojis em excesso e caixa-alta gritada.</li>
+            <li>Romantizar a realidade.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px;margin:44px 0 18px;">Frases-âncora (use como referência de voz)</h3>
+    <div class="grid-2">
+      <div class="phrase"><p>"No palco, eu não busco agradar. Eu busco despertar."</p></div>
+      <div class="phrase"><p>"Eu não romantizo a realidade. Eu apresento a vida como ela é."</p></div>
+      <div class="phrase"><p>"Tudo é treinável. Mas treino dá trabalho."</p></div>
+      <div class="phrase"><p>"Crescer não é esperar o momento ideal. É decidir subir de nível."</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCRITA -->
+<section id="escrita">
+  <div class="wrap">
+    <span class="sec-num">03 — Regras de escrita</span>
+    <h2 class="sec-title">Padrões editoriais que <span class="accent">mantêm a consistência</span>.</h2>
+    <p class="sec-intro">Pequenas decisões de texto que se aplicam a legendas, artes, e-mails e materiais impressos. Quando surgir dúvida, siga estes padrões.</p>
+
+    <div class="rule">
+      <div class="side yes"><span class="tag">Assim</span>Sem travessão. Use vírgula, dois-pontos ou reescreva a frase.</div>
+      <div class="side no"><span class="tag">Não assim</span><s>Resultado é escolha — não sorte.</s></div>
+    </div>
+    <div class="rule">
+      <div class="side yes"><span class="tag">Assim</span>"Nossa equipe" ao falar do atendimento da Polo.</div>
+      <div class="side no"><span class="tag">Não assim</span><s>A equipe da Polo retorna com a proposta.</s></div>
+    </div>
+    <div class="rule">
+      <div class="side yes"><span class="tag">Assim</span>Consultivo: "Primeiro entendemos o contexto, depois indicamos o formato."</div>
+      <div class="side no"><span class="tag">Não assim</span><s>Preencha agora e garanta já a sua vaga!</s></div>
+    </div>
+    <div class="rule">
+      <div class="side yes"><span class="tag">Assim</span>Título em caixa-baixa com acento correto e ênfase pontual em âmbar.</div>
+      <div class="side no"><span class="tag">Não assim</span><s>TÍTULO INTEIRO GRITADO EM CAIXA ALTA</s></div>
+    </div>
+    <div class="rule">
+      <div class="side yes"><span class="tag">Assim</span>Números com destaque: <b>+9,6</b> de NPS, <b>+15</b> anos, <b>5</b> livros.</div>
+      <div class="side no"><span class="tag">Não assim</span><s>"muitos anos de experiência e ótima avaliação"</s></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section id="logo">
+  <div class="wrap">
+    <span class="sec-num">04 — Assinatura</span>
+    <h2 class="sec-title">O nome é o logo. <span class="accent">Tipografia como marca</span>.</h2>
+    <p class="sec-intro">A assinatura de Gabriel Carneiro é um wordmark em Archivo, peso 800, caixa-alta, com espaçamento entre letras (tracking ~0.06em). Simples, firme e legível em qualquer suporte. A curadoria é sempre creditada à Polo Palestrantes.</p>
+
+    <div class="grid-2" style="margin-bottom:22px;">
+      <div class="logo-panel dark"><span class="wordmark on-dark">Gabriel Carneiro</span></div>
+      <div class="logo-panel light"><span class="wordmark on-light">Gabriel Carneiro</span></div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card"><h4>Área de proteção</h4><p>Mantenha ao redor do wordmark um respiro mínimo equivalente à altura da letra "G". Nada invade esse espaço.</p></div>
+      <div class="card"><h4>Tamanho mínimo</h4><p>Digital: 90 px de largura. Impresso: 22 mm. Abaixo disso, a legibilidade e o tracking se perdem.</p></div>
+      <div class="card"><h4>Não faça</h4><p>Não distorça, não incline, não troque a fonte, não aplique degradê, não use sobre foto sem contraste suficiente.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CORES -->
+<section id="cores">
+  <div class="wrap">
+    <span class="sec-num">05 — Cores</span>
+    <h2 class="sec-title">Base escura, respiro claro, <span class="accent">âmbar como assinatura</span>.</h2>
+    <p class="sec-intro">O sistema nasce do contraste entre o grafite profundo e o off-white areia. O âmbar é a cor de ênfase, usada com parcimônia para guiar o olhar. Nunca inunde uma peça de âmbar: ele vale pelo destaque.</p>
+
+    <h3 style="font-size:16px;margin-bottom:16px;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;">Primárias</h3>
+    <div class="swatches" style="margin-bottom:34px;">
+      <div class="sw"><div class="chip" style="background:#C1702E;"></div><div class="info"><div class="name">Âmbar</div><div class="hex">#C1702E · rgb(193,112,46)</div><div class="use">Cor de ênfase. Destaques, acentos, ícones e CTAs principais.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#12171D;"></div><div class="info"><div class="name">Grafite</div><div class="hex">#12171D · rgb(18,23,29)</div><div class="use">Fundo de blocos escuros, cartões-âncora e rodapé.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F5F3EE;border-bottom:1px solid var(--line);"></div><div class="info"><div class="name">Areia claro</div><div class="hex">#F5F3EE · rgb(245,243,238)</div><div class="use">Fundo alternativo para quebra de seções e cartões claros.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--line);"></div><div class="info"><div class="name">Branco</div><div class="hex">#FFFFFF · rgb(255,255,255)</div><div class="use">Fundo base e superfícies de leitura.</div></div></div>
+    </div>
+
+    <h3 style="font-size:16px;margin-bottom:16px;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;">Apoio</h3>
+    <div class="swatches" style="margin-bottom:34px;">
+      <div class="sw"><div class="chip" style="background:#9C5620;"></div><div class="info"><div class="name">Âmbar profundo</div><div class="hex">#9C5620</div><div class="use">Hover, sombreados e ênfase sobre fundo claro.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#E9D985;"></div><div class="info"><div class="name">Areia dourado</div><div class="hex">#E9D985</div><div class="use">Destaques e números sobre fundo escuro.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#175676;"></div><div class="info"><div class="name">Azul petróleo</div><div class="hex">#175676</div><div class="use">Cor secundária de ação e dados. Contraponto ao âmbar.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#4BA3C3;"></div><div class="info"><div class="name">Azul claro</div><div class="hex">#4BA3C3</div><div class="use">Detalhes e apoio pontual. Uso reduzido.</div></div></div>
+    </div>
+
+    <h3 style="font-size:16px;margin-bottom:16px;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;">Neutros de texto</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#161A1F;"></div><div class="info"><div class="name">Texto escuro</div><div class="hex">#161A1F</div><div class="use">Títulos e corpo sobre fundo claro.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#5B564D;"></div><div class="info"><div class="name">Texto suave</div><div class="hex">#5B564D</div><div class="use">Texto de apoio e legendas.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F1EDE4;border-bottom:1px solid var(--line);"></div><div class="info"><div class="name">Creme</div><div class="hex">#F1EDE4</div><div class="use">Texto e títulos sobre fundo escuro.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#E7E2D8;border-bottom:1px solid var(--line);"></div><div class="info"><div class="name">Linha</div><div class="hex">#E7E2D8</div><div class="use">Bordas, divisórias e contornos sutis.</div></div></div>
+    </div>
+
+    <div class="ratio-note">
+      <b>Proporção sugerida:</b> ~60% neutros (grafite / areia / branco), ~30% de suporte (azul petróleo e cremes) e no máximo ~10% de âmbar. O âmbar é tempero, não base. Garanta sempre contraste de leitura: creme sobre grafite, texto escuro sobre areia.
+    </div>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA -->
+<section id="tipografia">
+  <div class="wrap">
+    <span class="sec-num">06 — Tipografia</span>
+    <h2 class="sec-title">Duas fontes, papéis claros: <span class="accent">Archivo e Inter</span>.</h2>
+    <p class="sec-intro">Archivo carrega a força dos títulos e dos números. Inter garante clareza no texto e nas interfaces. Nada além dessas duas famílias.</p>
+
+    <div class="font-spec" style="margin-bottom:20px;">
+      <div class="fs archivo">
+        <div class="big">Aa</div>
+        <div class="nm">Archivo</div>
+        <div class="ds">Títulos, display, números e o wordmark. Pesos 700–900. Tracking negativo (-0.02em) nos títulos.</div>
+      </div>
+      <div class="fs inter">
+        <div class="big">Aa</div>
+        <div class="nm">Inter</div>
+        <div class="ds">Corpo de texto, legendas, botões e eyebrows. Pesos 400–800. Eyebrows em caixa-alta com tracking +0.1em.</div>
+      </div>
+    </div>
+
+    <div class="type-row"><div class="meta"><b>Display</b>Archivo 900</div><div class="t-display">O topo não tem teto.</div></div>
+    <div class="type-row"><div class="meta"><b>Título H2</b>Archivo 800</div><div class="t-h2">Torne-se mais forte.</div></div>
+    <div class="type-row"><div class="meta"><b>Subtítulo H3</b>Archivo 700</div><div class="t-h3">Resultado é consequência de escolha.</div></div>
+    <div class="type-row"><div class="meta"><b>Eyebrow</b>Inter 700 · caixa-alta</div><div class="t-eyebrow">Formatos de palestra</div></div>
+    <div class="type-row"><div class="meta"><b>Corpo</b>Inter 400</div><div class="t-body">A escolha do formato certo depende do momento da empresa e do objetivo do encontro. O texto respira, com entrelinha generosa e largura de leitura confortável.</div></div>
+  </div>
+</section>
+
+<!-- ELEMENTOS GRÁFICOS -->
+<section id="elementos">
+  <div class="wrap">
+    <span class="sec-num">07 — Elementos gráficos</span>
+    <h2 class="sec-title">Um kit de peças que se repete e <span class="accent">cria reconhecimento</span>.</h2>
+    <p class="sec-intro">Cantos arredondados generosos, pílulas, contornos finos e o gesto da montanha. Reaproveite estes componentes para manter a família visual coesa.</p>
+
+    <div class="grid-2" style="margin-bottom:22px;">
+      <div class="comp">
+        <div class="label">Eyebrow / selo</div>
+        <div class="demo-row">
+          <span class="badge badge-light"><span class="dot"></span>A tese</span>
+          <span class="badge badge-dark" style="background:#1b222b;"><span class="dot"></span>Palestrante exclusivo Polo</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:16px;">Pílula com ponto âmbar. Sempre em caixa-alta, tracking largo. Abre seções e blocos.</p>
+      </div>
+      <div class="comp">
+        <div class="label">Botão (pílula + círculo de ícone)</div>
+        <div class="demo-row">
+          <span class="btn-demo"><span class="bl">Solicitar proposta</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+          <span class="btn-demo navy"><span class="bl">Ação secundária</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+        </div>
+        <div class="demo-row" style="margin-top:12px;">
+          <span class="btn-demo outline"><span class="bl">Contorno claro</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+        </div>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:16px;">O círculo do ícone gira 45° no hover. Âmbar para ação principal, azul petróleo para secundária.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:22px;">
+      <div class="comp">
+        <div class="label">Tags de formação (contorno)</div>
+        <div class="demo-row">
+          <span class="tag-demo">/ PUCRS</span>
+          <span class="tag-demo">/ COMUNICAÇÃO</span>
+          <span class="tag-demo">/ NEUROCIÊNCIA</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:16px;">Contorno azul petróleo, fundo transparente, barra "/" como prefixo.</p>
+      </div>
+      <div class="comp">
+        <div class="label">Chips de tema</div>
+        <div class="demo-row">
+          <span class="chip-demo">Autorresponsabilidade</span>
+          <span class="chip-demo">Alta performance</span>
+          <span class="chip-demo">Protagonismo</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:16px;">Pílulas de fundo claro para listar temas. No hover, preenchem em âmbar.</p>
+      </div>
+    </div>
+
+    <div class="comp" style="background:var(--dark);border-color:var(--line-dark);position:relative;overflow:hidden;">
+      <div class="label" style="color:var(--text-on-dark);">Grafismo assinatura · a montanha</div>
+      <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;position:relative;z-index:2;">
+        <img src="Gabriel-Carneiro-montanha.svg" alt="Ilustração de montanha" style="width:260px;max-width:60%;">
+        <p style="color:var(--text-on-dark);font-size:14.5px;max-width:360px;">A montanha em traço âmbar é o símbolo do "subir de nível". Use como elemento decorativo no canto de blocos escuros, sempre atrás do texto e com o conteúdo legível por cima. Em fundos pequenos, vira marca-d'água discreta (opacidade reduzida).</p>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:22px;">
+      <div class="card"><h4>Raios de canto</h4><p>36 px em grandes blocos, 28 / 18 / 12 px em cartões e botões. Curvas generosas, nunca quinas duras.</p></div>
+      <div class="card"><h4>Cartões escuros</h4><p>Blocos grafite com raio de 36 px para ancorar seções-chave e criar ritmo entre áreas claras.</p></div>
+      <div class="card"><h4>Ícones</h4><p>Traço fino (stroke ~2 px), linha aberta, estilo minimalista. Sem preenchimento sólido.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTOGRAFIA -->
+<section id="fotografia">
+  <div class="wrap">
+    <span class="sec-num">08 — Fotografia</span>
+    <h2 class="sec-title">Presença real de palco, com <span class="accent">tratamento duotone</span>.</h2>
+    <p class="sec-intro">As imagens mostram Gabriel em ação e a plateia envolvida. O tratamento aplica um degradê multiplicativo (grafite para âmbar) que integra a foto à paleta e dá unidade, sem apagar o rosto.</p>
+
+    <div class="grid-3" style="margin-bottom:26px;">
+      <div class="photo-frame"><div class="duo"></div><span class="ph-label">Retrato · 4:5</span></div>
+      <div class="photo-frame" style="aspect-ratio:4/5;"><div class="duo" style="background:linear-gradient(160deg, rgba(18,23,29,0.1), rgba(23,86,118,0.4));"></div><span class="ph-label">Palco · overlay petróleo</span></div>
+      <div class="photo-frame" style="aspect-ratio:4/5;"><div class="duo" style="background:linear-gradient(195deg, rgba(18,23,29,0.05), rgba(18,23,29,0.55));"></div><span class="ph-label">Plateia · overlay grafite</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="dd do">
+        <div class="lbl"><span class="chip"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Faça</div>
+        <ul>
+          <li>Momentos reais de palco, expressão e gesto.</li>
+          <li>Enquadramento 4:5 (retrato) para peças-chave.</li>
+          <li>Overlay duotone para integrar à paleta.</li>
+          <li>Contraste suficiente para o texto por cima.</li>
+        </ul>
+      </div>
+      <div class="dd dont">
+        <div class="lbl"><span class="chip"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>Evite</div>
+        <ul>
+          <li>Banco de imagens genérico e posado.</li>
+          <li>Filtros coloridos fora da paleta.</li>
+          <li>Saturação exagerada ou HDR artificial.</li>
+          <li>Texto sobre a região mais clara da foto.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APLICAÇÕES -->
+<section id="aplicacoes">
+  <div class="wrap">
+    <span class="sec-num">09 — Aplicações</span>
+    <h2 class="sec-title">O sistema aplicado: <span class="accent">social e impresso</span>.</h2>
+    <p class="sec-intro">Exemplos de referência de como combinar os elementos. Não são artes finais, e sim demonstrações da lógica: eyebrow, título forte com ênfase pontual, respiro e assinatura.</p>
+
+    <div class="grid-3">
+      <div class="mock">
+        <div class="mock-post">
+          <img class="mp-mtn" src="Gabriel-Carneiro-montanha.svg" alt="" aria-hidden="true">
+          <span class="mp-eyebrow">A tese</span>
+          <div class="mp-title">Resultado é <span class="accent">escolha</span>, não sorte.</div>
+          <span class="mp-foot">Gabriel Carneiro · Polo Palestrantes</span>
+        </div>
+        <div class="cap">Feed · 1:1</div>
+      </div>
+      <div class="mock">
+        <div class="mock-story">
+          <span class="badge badge-dark" style="background:rgba(241,237,228,0.08);"><span class="dot"></span>Story</span>
+          <div class="ms-title">Não peça mais fácil.<br><span class="accent">Fique mais forte.</span></div>
+          <p style="font-size:12px;color:var(--text-on-dark);">Arraste para cima e leve essa tese ao seu evento.</p>
+        </div>
+        <div class="cap">Story · 9:16</div>
+      </div>
+      <div class="mock">
+        <div class="mock-print">
+          <div class="pr-top">Palestra</div>
+          <div class="pr-title">Te vejo no topo.<br>O topo <span class="accent">não tem teto</span>.</div>
+          <div class="pr-foot">Convite · impresso A5 · Gabriel Carneiro</div>
+        </div>
+        <div class="cap">Impresso · 3:4</div>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:26px;">
+      <div class="card"><h4>Hierarquia</h4><p>Uma ideia por peça. Eyebrow curto, título forte, e uma única ênfase em âmbar. Deixe respiro ao redor.</p></div>
+      <div class="card"><h4>Assinatura</h4><p>Feche sempre com "Gabriel Carneiro" e o crédito à Polo Palestrantes. Consistência acima de criatividade solta.</p></div>
+      <div class="card"><h4>Coerência</h4><p>Se a peça poderia ser de qualquer palestrante, refaça. Ela precisa soar direta, adulta e sem motivação vazia.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="guide-footer">
+  <div class="wrap">
+    <div>
+      <div class="fw">Gabriel Carneiro</div>
+      <p>Guia de marca v1 · 2026. Documento vivo, criado a partir da landing page oficial. Curadoria Polo Palestrantes.</p>
+    </div>
+    <p class="fq">"Tudo é treinável. Mas treino dá trabalho."</p>
+  </div>
+</footer>
+
+</body>
+</html>
