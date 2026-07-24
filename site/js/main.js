@@ -46,22 +46,22 @@ function scrollCarousel(trackId, dir){
   }
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
 
-  // Parallax suave nos elementos [data-parallax] (respeita prefers-reduced-motion)
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Parallax de movimento nos elementos [data-parallax]
   const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
-  if(parallaxEls.length && !prefersReduced){
-    const TRAVEL = 95; // deslocamento máximo em px
+  if(parallaxEls.length){
+    const TRAVEL = 110; // deslocamento máximo em px
     let ticking = false;
     const update = ()=>{
-      const vh = window.innerHeight;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
       parallaxEls.forEach(el=>{
         const host = el.closest('section') || el.parentElement;
         const rect = host.getBoundingClientRect();
-        if(rect.bottom < -300 || rect.top > vh + 300) return;
+        if(rect.bottom < -400 || rect.top > vh + 400) return;
         // progresso -1..1 conforme a seção cruza a viewport
         const progress = (rect.top + rect.height/2 - vh/2) / (vh/2 + rect.height/2);
-        const shift = Math.max(-TRAVEL, Math.min(TRAVEL, -progress * TRAVEL));
-        // sinal explícito: 'calc(-50% + -70px)' é inválido em vários navegadores
+        const clamped = Math.max(-1, Math.min(1, progress));
+        const shift = -clamped * TRAVEL;
+        // sinal explícito: 'calc(-50% + -70px)' é inválido no WebKit/Safari
         const sign = shift >= 0 ? '+' : '-';
         el.style.transform = 'translate(0, calc(-50% ' + sign + ' ' + Math.abs(shift).toFixed(1) + 'px))';
       });
@@ -70,5 +70,6 @@ function scrollCarousel(trackId, dir){
     const onScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } };
     window.addEventListener('scroll', onScroll, { passive:true });
     window.addEventListener('resize', onScroll, { passive:true });
+    document.addEventListener('scroll', onScroll, { passive:true, capture:true });
     update();
   }

@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body>
 
@@ -40,11 +40,13 @@
           <h1>Não peça pra vida ficar mais fácil.<br><span class="accent">Torne-se mais forte.</span></h1>
           <p class="sub">Gabriel Carneiro leva ao palco uma tese direta: resultado é consequência de escolhas repetidas, e isso é treinável. Sem fórmula pronta. Sem motivação vazia.</p>
           <div class="hero-ctas">
-            <button class="btn btn-amber" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
-              <span class="label">Solicitar proposta</span>
-              <span class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
-            </button>
-            <a class="btn btn-outline-dark" href="#facilitador">
+            <span class="beam">
+              <button class="btn beam-inner" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
+                <span class="label">Solicitar proposta</span>
+                <span class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+              </button>
+            </span>
+            <a class="btn btn-outline-dark shine" href="#facilitador">
               <span class="label">Conhecer o palestrante</span>
               <span class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
             </a>
@@ -527,7 +529,7 @@
   <img src="" alt="" id="lightbox-img">
 </div>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=2"></script>
 
 </body>
 </html>
