@@ -88,11 +88,11 @@
   .btn-block .icon-circle{ margin-right:5px; }
 
   /* efeito BEAM: borda em conic-gradient girando (CTA primário do hero) */
-  .beam{ display:inline-flex; position:relative; padding:1.5px; overflow:hidden; border-radius:14px; }
+  .beam{ display:inline-flex; position:relative; padding:1.5px; overflow:hidden; border-radius:999px; }
   .beam::before{ content:''; position:absolute; inset:-50%; background:conic-gradient(from 0deg, transparent 0 72%, #FF8A00 84%, #EDE9E0 90%, transparent 96%); animation:spin 3s linear infinite; }
-  .beam-inner{ position:relative; border-radius:12.5px; background:#232326; }
+  .beam-inner{ position:relative; border-radius:999px; background:#232326; }
   @keyframes spin{ to{ transform:rotate(1turn); } }
-  .btn.beam-inner{ border-radius:12.5px; }
+  .btn.beam-inner{ border-radius:999px; }
   .btn.beam-inner:hover{ transform:none; }
   .btn.beam-inner .label{ color:#fff; }
   .btn.beam-inner .icon-circle{ background:var(--amber); }
