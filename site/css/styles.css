@@ -324,6 +324,9 @@
   footer .logo-mark img,footer .logo-mark svg{ height:44px; width:auto; display:block; }
 
   @media (max-width: 960px){
+    .btn .label{ white-space:normal; }
+    .section-cta .btn{ max-width:100%; }
+    .section-cta.center .btn .label{ text-align:center; }
     .hero-grid, .about-grid, .final-cta, .form-section .wrap, .split-card .wrap.grid2, .cenario-grid{ grid-template-columns:1fr; }
     .cards3, .format-grid, .test-grid2, .pilares-grid{ grid-template-columns:1fr; }
     .pilares-grid .pilar-card:last-child{ grid-column:1; }
